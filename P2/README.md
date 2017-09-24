@@ -20,17 +20,31 @@ Instead of download new images, I get random samples of X_test data. The predict
 
 Finally, in softmax predictions I took the `display_image_predictions` function from my second project of DeepLearning Nanodegree. 
 
- 
-The Project
----
-The goals / steps of this project are the following:
-* Load the data set
-* Explore, summarize and visualize the data set
-* Design, train and test a model architecture
-* Use the model to make predictions on new images
-* Analyze the softmax probabilities of the new images
-* Summarize the results with a written report
 
+#### Architecture
+As I mencioned, I use a LeNet network. Configuration:
+* 5 layers
+    * 1-2: Convolutionals
+    * 3-5: Fully connected
+* relu activations
+* dropout in the end of layer 2
+* Input NN shape = 32x32x5
+* Output NN: number of different labels
+
+
+#### Hyperparameters
+`EPOCHS = 100` -> With more epochs the NN starts to overfitting
+
+`BATCH_SIZE = 64` -> Good results in terms of generalization 
+
+`rate = 0.0005` -> With more learning rate I had huge jumps in performance
+
+#### Test model
+Once the NN was trained, It will be used to predict new images that it never saw. 
+I randomly choose 5 images from test dataset and predict it. The results was quite good except in too much blurred images or dark. However thanks to add 3 channels of colors (instead of grayscale) the NN can predict better the darkest images.     
+
+Also the accuracy is quite good but always worse than the accuracy performance (obviously)
+ 
 ### Dependencies
 This lab requires:
 
