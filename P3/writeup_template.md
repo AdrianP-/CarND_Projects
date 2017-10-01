@@ -65,5 +65,7 @@ for image, measurement in zip(images, measurements):
 
 The problem was with big curves because the prediction were too smooth, so I multiply the data with high steering angles.           
     
+###KISS (Keep It Simple, Stupid)
 
-
+I didn't add multiple cameras because I thought that is not necessary to solve this problem :)
+ 
