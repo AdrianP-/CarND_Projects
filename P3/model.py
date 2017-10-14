@@ -13,8 +13,6 @@ os.chdir(current_path)
 data = pd.read_csv("data/driving_log.csv", header=None)
 
 
-def factor_reduce(value):
-    return int(value / 1)
 
 # def generator(samples, batch_size=32):
 #     num_samples = len(samples)
@@ -41,8 +39,8 @@ images = []
 measurements = []
 for idx, line in data.iterrows():
     image = cv2.imread(line[0])
-    new_shape = (factor_reduce(image.shape[1]), factor_reduce(image.shape[0]))
-    image = cv2.resize(image, new_shape)
+    # new_shape = (image.shape[1], image.shape[0])
+    # image = cv2.resize(image, new_shape)
     images.append(image)
     steering = float(line[3])
     measurements.append(steering)
@@ -68,8 +66,8 @@ from keras.layers import Flatten, Dense, Lambda, MaxPooling2D, Cropping2D, K
 from keras.layers import Convolution2D
 
 model = Sequential()
-model.add(Lambda(lambda x: x / 255.0 - 0.5, input_shape=(factor_reduce(160), factor_reduce(320), 3)))
-model.add(Cropping2D(cropping=((factor_reduce(70), factor_reduce(25)), (0, 0))))
+model.add(Lambda(lambda x: x / 255.0 - 0.5, input_shape=(160, 320, 3)))
+model.add(Cropping2D(cropping=((70, 25), (0, 0))))
 
 model.add(Convolution2D(24, 5, 5, subsample=(2, 2), activation="relu"))
 model.add(Convolution2D(36, 5, 5, subsample=(2, 2), activation="relu"))
