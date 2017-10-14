@@ -12,7 +12,7 @@ The steps of this project are the following:
 * Summarize the results with a written report
 
 ---
-###Files Submitted & Code Quality
+### Files Submitted & Code Quality
 
 My project includes the following files:
 * model.py containing the script to create and train the model
@@ -20,17 +20,17 @@ My project includes the following files:
 * model.h5 containing a trained convolution neural network 
 * writeup.md summarizing the results
 
-####Functional code
+#### Functional code
 Using the Udacity provided simulator and my drive.py file, the car can be driven autonomously around the track by executing 
 ```sh
 python3 drive.py model_v3.h5
 ```
 
-###Data set generation
+### Data set generation
 To make the dataset, I recorded one lap using the mouse. Besides I took care driving always the car in the middle of the road. 
 Also I used the flipped technique of data augmentation, because before that, my car only learned to turn left
 
-###Model Architecture
+### Model Architecture
 
 The model architecture implemented is the same as NVIDIA Architecture, 4 convolution layers ended with a 4 Fully-connected layers. More info:  http://images.nvidia.com/content/tegra/automotive/images/2016/solutions/pdf/end-to-end-dl-using-px.pdf
 
@@ -38,7 +38,7 @@ However, before the model:
 * Cropped the image, that action delete not interesting info in the images.
 
 
-###Training Strategy
+### Training Strategy
 
 The key is the data augmentation module:
  
@@ -59,7 +59,7 @@ for image, measurement in zip(images, measurements):
 
 The problem was with big curves because the angle prediction was very smooth, so I multiply the data with high steering angles.           
     
-###KISS (Keep It Simple)
+### KISS (Keep It Simple)
 
 I didn't add multiple cameras because I thought that is not necessary to solve this problem :)
 
