@@ -43,21 +43,28 @@ However, before the model:
 The key is the data augmentation module:
  
 ```
-augmented_images, augmented_measurementes = [], []
 for image, measurement in zip(images, measurements):
-    augmented_images.append(image)
-    augmented_measurementes.append(measurement)
-    augmented_images.append(cv2.flip(image, 1))
-    augmented_measurementes.append(measurement * -1.0)
-    if measurement >= 0.5 or measurement <= -0.5:
+    print(measurement, measurement == 0, decision_to_add())
+    if measurement == 0 and decision_to_add():
+        augmented_images.append(image)
+        augmented_measurements.append(measurement)
+    else:
+        augmented_images.append(image)
+        augmented_measurements.append(measurement)
+        augmented_images.append(cv2.flip(image, 1))
+        augmented_measurements.append(measurement * -1.0)
+
+    if measurement >= 0.4 or measurement <= -0.4:
         for i in range(5):
             augmented_images.append(image)
-            augmented_measurementes.append(measurement)
+            augmented_measurements.append(measurement)
             augmented_images.append(cv2.flip(image, 1))
-            augmented_measurementes.append(measurement * -1.0)
+            augmented_measurements.append(measurement * -1.0)
 ```
 
-The problem was with big curves because the angle prediction was very smooth, so I multiply the data with high steering angles.           
+The problem was with big curves because the angle prediction was very smooth, so I multiply the data with high steering angles and increment the angle by 20%.
+Besides, the dataset it was really unbalanced (there are a lot of zero angles), so only added the 30% of zero angles (in random way) 
+        
     
 ### KISS (Keep It Simple)
 
