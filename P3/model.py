@@ -40,7 +40,9 @@ In case that I need image aumentation module
 #
 #     return seq.augment_images(images)
 
-#Get Dataset
+'''
+Get Dataset
+'''
 current_path = "/home/adrian/carnd/CarND-Behavioral-Cloning-P3"
 os.chdir(current_path)
 data = pd.read_csv("data/driving_log.csv", header=None)
@@ -69,23 +71,24 @@ Finally I didn't use generator because the dataset fits perfectly on my computer
 #             y_train = np.array(angles)
 #             yield sklearn.utils.shuffle(X_train, y_train)
 
-#Get the images (features) and theirs steering angles (labels)
+'''
+Get the images (features) and theirs steering angles (labels)
+'''
 images = []
 measurements = []
 for idx, line in data.iterrows():
     image = cv2.imread(line[0])
-    b, g, r = cv2.split(image) #switch to RGB image
+    b, g, r = cv2.split(image)  # switch to RGB image
     image = cv2.merge([r, g, b])
     # new_shape = (image.shape[1], image.shape[0])
     # image = cv2.resize(image, new_shape)
     images.append(image)
-    steering = float(line[3])*1.20 #angle aumentation by 20%
+    steering = float(line[3]) * 1.20  # angle aumentation by 20%
     measurements.append(steering)
 
 
 def decision_to_add(probability=0.7):
     return random.random() > probability
-
 
 
 '''
@@ -95,9 +98,7 @@ Data augmentation module:
 '''
 augmented_images, augmented_measurements = [], []
 
-
 for image, measurement in zip(images, measurements):
-    print(measurement, measurement == 0, decision_to_add())
     if measurement == 0 and decision_to_add():
         augmented_images.append(image)
         augmented_measurements.append(measurement)
@@ -125,7 +126,6 @@ for image, measurement in zip(images, measurements):
 X_train = np.array(augmented_images)
 y_train = np.array(augmented_measurements)
 
-
 '''
 Nvidia architecture for deep learning with normalization and cropping in first layers
 '''
@@ -152,7 +152,9 @@ model.add(Dense(1))
 
 model.compile(loss='mse', optimizer='adam')
 
-#Traning
+'''
+Run training
+'''
 history_object = model.fit(X_train, y_train, validation_split=0.1, shuffle=True, nb_epoch=7, verbose=1)
 
 # ### print the keys contained in the history object
@@ -168,9 +170,3 @@ history_object = model.fit(X_train, y_train, validation_split=0.1, shuffle=True,
 # plt.show()
 
 model.save('model_v3.h5')
-
-
-
-
-
-
