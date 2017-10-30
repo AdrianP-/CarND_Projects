@@ -1,6 +1,11 @@
 #**Behavioral Cloning** 
 
 ---
+[//]: # (Image References)
+
+[image1]: ./images/center_2017_09_30_13_04_52_462.jpg "Centered"
+[image2]: ./images/center_2017_09_30_13_05_55_721.jpg "Curve"
+[image3]: ./images/center_2017_09_30_13_05_55_721_flipped.png "Flipped Curve"
 
 **Behavioral Cloning Project**
 
@@ -30,6 +35,11 @@ python3 drive.py model_v3.h5
 To make the dataset, I recorded one lap using the mouse. Besides I took care driving always the car in the middle of the road. 
 Also I used the flipped technique of data augmentation, because before that, my car only learned to turn left.
 
+Example images: 
+
+![alt text][image1]
+![alt text][image2]
+![alt text][image3]
 
 The key is the data augmentation module:
  
