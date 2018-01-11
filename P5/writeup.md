@@ -8,7 +8,7 @@
 This is the last project of Udacity Self-Driving Car Nanodegree program. 
 The main goal is identify vehicles from a video, also detect Lane Line as in project.
 
-You can see the result of this project in the next link: https://youtu.be/WwBSDV8TG8A
+You can see the result of this project in the next link: https://youtu.be/ej3_oO2HsXw
 
 [//]: # (Image References)
 [image1]: hog_features_car.png
@@ -81,6 +81,8 @@ Example:
 
  ![alt text][image5]
  
+In the last iteration, I added a multi-frame accumulation heatmap, also to reduce false positives and negatives
+
 ### Pipeline: 
 
 To make the final video, is necessary gather all project (also project 4). I defined the next global to call in each frame of video:
